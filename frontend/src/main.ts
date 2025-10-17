@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   display.textContent = "0";
 
-  // загрузить историю
+
   const history = await fetchHistory();
   history.forEach((h) => {
     const li = document.createElement("li");
@@ -24,16 +24,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!btn || btn.tagName !== "BUTTON") return;
     const key = btn.textContent?.trim() ?? "";
 
-    // цифры и точка
+
     if (!isNaN(Number(key)) || key === ".") {
       currentExpression += key;
       display.textContent = currentExpression || "0";
       return;
     }
 
-    // операторы
+
     if (["+", "−", "×", "÷", "^", "%", "-", "*", "/"].includes(key)) {
-      // если последний символ пробел/оператор — не добавляем подряд
       currentExpression = currentExpression.trimEnd();
       currentExpression += " " + key + " ";
       display.textContent = currentExpression;
@@ -93,7 +92,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (key.startsWith("M")) {
-      // память — можно реализовать позже
       return;
     }
   });
