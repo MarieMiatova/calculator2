@@ -8,11 +8,17 @@ services:
       POSTGRES_DB: calc
     ports:
       - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
   api:
-    build: .
+    build: ./backend
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgres://user:pass@db:5432/calc
+      DATABASE_URL: postgresql://user:pass@db:5432/calc
     depends_on:
       - db
+
+volumes:
+  db_data:
