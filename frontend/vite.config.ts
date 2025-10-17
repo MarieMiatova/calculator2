@@ -1,17 +1,17 @@
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+import { defineConfig } from 'vite';
+import path from 'path';
+
+
+export default defineConfig({
+  server: {
+    port: 5173,
   },
-  "include": ["src"]
-}
+  build: {
+    outDir: 'dist',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+});
