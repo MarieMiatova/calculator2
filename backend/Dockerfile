@@ -2,11 +2,10 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Скопировать только нужные файлы сначала для кеша pip
+
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
-
-# Скопировать весь бекенд
+д
 COPY . /app
 
 ENV PYTHONUNBUFFERED=1
