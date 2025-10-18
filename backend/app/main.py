@@ -8,14 +8,14 @@ from .database import SessionLocal, engine
 from .models import Base, History
 from .schemas import HistoryEntry
 
-# Создать таблицы (при запуске контейнера/сервиса)
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Калькулятор API")
 
-# CORS: настройте origins в продакшн на ваш фронтенд-домен.
+
 origins = [
-    "*"  # <- для разработки/тестов удобно, в проде замените на https://your-site.netlify.app
+    "*"  
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -40,8 +40,7 @@ def get_history(db: Session = Depends(get_db)):
 
 class HistoryCreate(HistoryEntry):
     id: None = None
-    timestamp: str | None = None  # принимаем ISO строку или пусто
-
+    timestamp: str | None = None  
 @app.post("/api/history", response_model=HistoryEntry)
 def add_history(item: HistoryCreate, db: Session = Depends(get_db)):
     try:
