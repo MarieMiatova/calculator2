@@ -5,7 +5,7 @@ from datetime import datetime
 Base = declarative_base()
 
 class History(Base):
-    __tablename__ = "history"   # <- было ошибочно tablename
+    __tablename__ = "history"   
     id = Column(Integer, primary_key=True, index=True)
     expression = Column(String, nullable=False)
     result = Column(String, nullable=False)
