@@ -58,6 +58,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    if (key === "CE") {
+      currentExpression = "";
+      display.textContent = "0";
+      return;
+    }
+    
     if (key === "OFF") {
       display.textContent = "";
       return;

@@ -1,49 +1,36 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Калькулятор с историей</title>
-  <link rel="stylesheet" href="main.css/style.css" />
-</head>
-<body>
-  <div class="container">
-    <div class="history">
-      <h3>История</h3>
-      <ul id="history-list"></ul>
-    </div>
-
-    <div class="calculator" aria-label="Калькулятор">
-      <div class="display" id="display">0</div>
-      <div class="buttons" id="buttons-area">
-        <button class="orange">C</button>
-        <button class="operator">OFF</button>
-        <button class="operator">√</button>
-        <button class="operator">%</button>
-        <button class="memory">MRC</button>
-        <button class="memory">M-</button>
-        <button class="memory">M+</button>
-        <button class="operator">÷</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="operator">×</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button class="operator">−</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button class="operator">+</button>
-        <button>0</button>
-        <button>.</button>
-        <button class="operator equal" style="grid-column: span 2;">=</button>
-      </div>
-    </div>
+<div class="container">
+  <div class="history">
+    <h3>История</h3>
+    <ul id="history-list"></ul>
   </div>
 
-<script type="module" src="/src/main.ts"></script>
-
-</body>
-</html>
+  <div class="calculator" aria-label="Калькулятор">
+    <div class="display" id="display">0</div>
+    <div class="buttons" id="buttons-area">
+      <button class="orange">C</button>
+      <button class="orange">CE</button> <!-- новая кнопка -->
+      <button class="operator">OFF</button>
+      <button class="operator">√</button>
+      <button class="operator">%</button>
+      <button class="memory">MRC</button>
+      <button class="memory">M-</button>
+      <button class="memory">M+</button>
+      <button class="operator">÷</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="operator">×</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button class="operator">−</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="operator">+</button>
+      <button>0</button>
+      <button>.</button>
+      <button class="operator equal" style="grid-column: span 2;">=</button>
+    </div>
+  </div>
+</div>
