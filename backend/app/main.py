@@ -17,16 +17,18 @@ app = FastAPI(title="Калькулятор API")
 import os
 
 origins = [
-    os.getenv("FRONTEND_URL", "http://localhost:5173")
+    "https://calculatormanefabulent.netlify.app",
+      "http://localhost:5173"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET","POST","OPTIONS"],
     allow_headers=["*"],
 )
+
 
 
 def get_db():
