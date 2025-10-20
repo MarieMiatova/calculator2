@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   display.textContent = "0";
 
-
   const history = await fetchHistory();
   history.forEach((h) => {
     const li = document.createElement("li");
@@ -24,13 +23,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!btn || btn.tagName !== "BUTTON") return;
     const key = btn.textContent?.trim() ?? "";
 
-
     if (!isNaN(Number(key)) || key === ".") {
       currentExpression += key;
       display.textContent = currentExpression || "0";
       return;
     }
-
 
     if (["+", "−", "×", "÷", "^", "%", "-", "*", "/"].includes(key)) {
       currentExpression = currentExpression.trimEnd();
@@ -58,12 +55,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    if (key === "CE") {
-      currentExpression = "";
-      display.textContent = "0";
-      return;
-    }
-    
     if (key === "OFF") {
       display.textContent = "";
       return;
