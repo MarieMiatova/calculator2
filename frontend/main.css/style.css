@@ -12,7 +12,7 @@ html, body {
 }
 body {
   background-color: var(--bg);
-  background-image: url('/frontend/public/images/background-calculator.jpg');
+  background-image: url('/images/background-calculator.jpg');
   background-size: 100%;
   display: flex;
   justify-content: center;
