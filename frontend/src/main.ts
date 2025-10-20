@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   display.textContent = "0";
 
+
   const history = await fetchHistory();
   history.forEach((h) => {
     const li = document.createElement("li");
@@ -18,97 +19,86 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let currentExpression = "";
 
-  const ceBtn = document.getElementById("ce-btn");
-  ceBtn?.addEventListener("click", () => {
-    currentExpression = "";
-    display.textContent = "0";
-  });
-
   buttonsArea.addEventListener("click", async (e) => {
-  const btn = e.target as HTMLElement;
-  if (!btn || btn.tagName !== "BUTTON") return;
-  
-  const key = btn.textContent?.trim() ?? "";
-  
-  if (!isNaN(Number(key)) || key === ".") {
-    currentExpression += key;
-    display.textContent = currentExpression || "0";
-    return;
-  }
+    const btn = e.target as HTMLElement;
+    if (!btn || btn.tagName !== "BUTTON") return;
 
-  if (["+", "−", "×", "÷", "^", "%", "-", "*", "/"].includes(key)) {
-    currentExpression = currentExpression.trimEnd();
-    currentExpression += " " + key + " ";
-    display.textContent = currentExpression;
-    return;
-  }
-
-  if (key === "=") {
-    if (!currentExpression) return;
-    const result = computeExpressionAsString(currentExpression);
-    display.textContent = result;
-    const entry: HistoryEntry = {
-      expression: currentExpression,
-      result,
-      timestamp: new Date().toISOString()
-    };
-    await postHistory(entry);
-    const li = document.createElement("li");
-    li.textContent = `${currentExpression} = ${result}`;
-    historyList.prepend(li);
-    currentExpression = result === "Error" ? "" : result;
-    return;
-  }
-
-  if (key === "C" || key === "C/CE") {
-    currentExpression = "";
-    display.textContent = "0";
-    return;
-  }
-
-  if (key === "CE") {
-    currentExpression = "";
-    display.textContent = "0";
-    return;
-  }
-
-  
-  if (key === "OFF") {
-    display.textContent = "";
-    return;
-  }
-
-  if (key === "√") {
-    const v = parseFloat(display.textContent || "0");
-    const r = Number.isFinite(v) ? Math.sqrt(v) : NaN;
-    const result = Number.isFinite(r) ? r.toString() : "Error";
-    currentExpression = result;
-    display.textContent = result;
-    const expr = `√(${v})`;
-    await postHistory({ expression: expr, result, timestamp: new Date().toISOString() });
-    const li = document.createElement("li");
-    li.textContent = `${expr} = ${result}`;
-    historyList.prepend(li);
-    return;
-  }
-
-  if (key === "%") {
-    const v = parseFloat(display.textContent || "0");
-    const r = v / 100;
-    const result = isFinite(r) ? r.toString() : "Error";
-    currentExpression = result;
-    display.textContent = result;
-    const expr = `${v}%`;
-    await postHistory({ expression: expr, result, timestamp: new Date().toISOString() });
-    const li = document.createElement("li");
-    li.textContent = `${expr} = ${result}`;
-    historyList.prepend(li);
-    return;
-  }
+    const key = btn.textContent?.trim() ?? "";
 
 
-  if (key.startsWith("M")) {
-    return;
-  }
+    if (!isNaN(Number(key)) || key === ".") {
+      currentExpression += key;
+      display.textContent = currentExpression || "0";
+      return;
+    }
+
+
+    if (["+", "−", "×", "÷", "^", "%", "-", "*", "/"].includes(key)) {
+      currentExpression = currentExpression.trimEnd();
+      currentExpression += " " + key + " ";
+      display.textContent = currentExpression;
+      return;
+    }
+
+
+    if (key === "=") {
+      if (!currentExpression) return;
+      const result = computeExpressionAsString(currentExpression);
+      display.textContent = result;
+      await postHistory({
+        expression: currentExpression,
+        result,
+        timestamp: new Date().toISOString(),
+      });
+      const li = document.createElement("li");
+      li.textContent = `${currentExpression} = ${result}`;
+      historyList.prepend(li);
+      currentExpression = result === "Error" ? "" : result;
+      return;
+    }
+
+
+    if (key === "C" || key === "C/CE") {
+      currentExpression = "";
+      display.textContent = "0";
+      return;
+    }
+
+
+    if (key === "OFF") {
+      display.textContent = "";
+      return;
+    }
+
+
+    if (key === "√") {
+      const v = parseFloat(display.textContent || "0");
+      const r = Number.isFinite(v) ? Math.sqrt(v) : NaN;
+      const result = Number.isFinite(r) ? r.toString() : "Error";
+      currentExpression = result;
+      display.textContent = result;
+      await postHistory({ expression: `√(${v})`, result, timestamp: new Date().toISOString() });
+      const li = document.createElement("li");
+      li.textContent = `√(${v}) = ${result}`;
+      historyList.prepend(li);
+      return;
+    }
+
+ 
+    if (key === "%") {
+      const v = parseFloat(display.textContent || "0");
+      const r = v / 100;
+      const result = isFinite(r) ? r.toString() : "Error";
+      currentExpression = result;
+      display.textContent = result;
+      await postHistory({ expression: `${v}%`, result, timestamp: new Date().toISOString() });
+      const li = document.createElement("li");
+      li.textContent = `${v}% = ${result}`;
+      historyList.prepend(li);
+      return;
+    }
+
+
+    if (key.startsWith("M")) return;
   });
 });
