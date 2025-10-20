@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const display = document.getElementById("display") as HTMLElement;
   const historyList = document.getElementById("history-list") as HTMLElement;
   const buttonsArea = document.getElementById("buttons-area") as HTMLElement;
+  const clearHistoryBtn = document.getElementById("clear-history") as HTMLElement;
 
   display.textContent = "0";
-
 
   const history = await fetchHistory();
   history.forEach((h) => {
@@ -19,19 +19,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let currentExpression = "";
 
+  clearHistoryBtn?.addEventListener("click", () => {
+    historyList.innerHTML = "";
+  });
+
   buttonsArea.addEventListener("click", async (e) => {
     const btn = e.target as HTMLElement;
     if (!btn || btn.tagName !== "BUTTON") return;
 
     const key = btn.textContent?.trim() ?? "";
 
-
     if (!isNaN(Number(key)) || key === ".") {
       currentExpression += key;
       display.textContent = currentExpression || "0";
       return;
     }
-
 
     if (["+", "−", "×", "÷", "^", "%", "-", "*", "/"].includes(key)) {
       currentExpression = currentExpression.trimEnd();
@@ -40,23 +42,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-
     if (key === "=") {
       if (!currentExpression) return;
       const result = computeExpressionAsString(currentExpression);
       display.textContent = result;
-      await postHistory({
+
+      const entry: HistoryEntry = {
         expression: currentExpression,
         result,
-        timestamp: new Date().toISOString(),
-      });
+        timestamp: new Date().toISOString()
+      };
+      await postHistory(entry);
+
       const li = document.createElement("li");
       li.textContent = `${currentExpression} = ${result}`;
       historyList.prepend(li);
+
       currentExpression = result === "Error" ? "" : result;
       return;
     }
-
 
     if (key === "C" || key === "C/CE") {
       currentExpression = "";
@@ -64,12 +68,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-
     if (key === "OFF") {
       display.textContent = "";
       return;
     }
-
 
     if (key === "√") {
       const v = parseFloat(display.textContent || "0");
@@ -77,27 +79,31 @@ document.addEventListener("DOMContentLoaded", async () => {
       const result = Number.isFinite(r) ? r.toString() : "Error";
       currentExpression = result;
       display.textContent = result;
-      await postHistory({ expression: `√(${v})`, result, timestamp: new Date().toISOString() });
+
+      const expr = `√(${v})`;
+      await postHistory({ expression: expr, result, timestamp: new Date().toISOString() });
+
       const li = document.createElement("li");
-      li.textContent = `√(${v}) = ${result}`;
+      li.textContent = `${expr} = ${result}`;
       historyList.prepend(li);
       return;
     }
 
- 
     if (key === "%") {
       const v = parseFloat(display.textContent || "0");
       const r = v / 100;
       const result = isFinite(r) ? r.toString() : "Error";
       currentExpression = result;
       display.textContent = result;
-      await postHistory({ expression: `${v}%`, result, timestamp: new Date().toISOString() });
+
+      const expr = `${v}%`;
+      await postHistory({ expression: expr, result, timestamp: new Date().toISOString() });
+
       const li = document.createElement("li");
-      li.textContent = `${v}% = ${result}`;
+      li.textContent = `${expr} = ${result}`;
       historyList.prepend(li);
       return;
     }
-
 
     if (key.startsWith("M")) return;
   });
