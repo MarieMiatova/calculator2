@@ -12,6 +12,8 @@ html, body {
 }
 body {
   background-color: var(--bg);
+  background-image: url('/frontend/images/background-calculator.jpg');
+  background-size: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +23,8 @@ body {
 }
 .container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
   padding: 12px;
   max-width: 100%;
