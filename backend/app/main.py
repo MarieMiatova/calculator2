@@ -14,9 +14,12 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Калькулятор API")
 
 
+import os
+
 origins = [
-    "https://calculatormanefabulent.netlify.app"
+    os.getenv("FRONTEND_URL", "http://localhost:5173")
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
