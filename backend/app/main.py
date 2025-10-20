@@ -15,7 +15,7 @@ app = FastAPI(title="Калькулятор API")
 
 
 origins = [
-    "*"  
+    "https://calculatormanefabulent.netlify.app"
 ]
 app.add_middleware(
     CORSMiddleware,
