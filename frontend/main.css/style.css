@@ -7,12 +7,14 @@
   --orange: #f57c00;
   --orange-hover: #ff9800;
 }
+
 html, body {
   height: 100%;
 }
+
 body {
   background-color: var(--bg);
-  background-image: url('/frontend/images/background-calculator.jpg');
+  background-image: url('/images/background-calculator.jpg');
   background-size: 100%;
   display: flex;
   justify-content: center;
@@ -21,6 +23,7 @@ body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
 }
+
 .container {
   display: flex;
   align-items: center;
@@ -31,6 +34,7 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
+
 .history {
   background-color: var(--card);
   border-radius: 12px;
@@ -40,16 +44,19 @@ body {
   height: 400px;
   overflow-y: auto;
 }
+
 .history h3 {
   margin-top: 0;
   text-align: center;
   color: var(--text);
 }
+
 .history ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .history li {
   background-color: #f3f3f3;
   border-radius: 6px;
@@ -60,6 +67,24 @@ body {
   color: #333;
   cursor: pointer;
 }
+
+#clear-history {
+  background-color: #f57c00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#clear-history:hover {
+  background-color: #ff9800;
+}
+
 .calculator {
   background-color: var(--calc);
   border-radius: 20px;
@@ -70,6 +95,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .display {
   background-color: #cfd0c2;
   color: #111;
@@ -86,12 +112,14 @@ body {
   box-sizing: border-box;
   overflow: hidden;
 }
+
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   width: 100%;
 }
+
 button {
   background-color: var(--btn);
   color: #fff;
@@ -103,12 +131,16 @@ button {
   transition: transform 0.05s ease, background-color 0.2s;
   user-select: none;
 }
+
 button:active { transform: scale(0.98); }
 button:hover { background-color: #444; }
+
 .orange { background-color: var(--orange); color: #fff; }
 .orange:hover { background-color: var(--orange-hover); }
+
 .operator { background-color: #111; }
 .operator:hover { background-color: #222; }
+
 .equal { background-color: #007acc; }
 .equal:hover { background-color: #0095ff; }
 
@@ -119,5 +151,6 @@ button:hover { background-color: #444; }
   .calculator { width: 100%; }
   .display { height: 64px; font-size: 1.9rem; }
 }
+
 .history li:hover { background-color: #eaeaea; }
 button:focus { outline: 2px solid #66afe9; outline-offset: 2px; }

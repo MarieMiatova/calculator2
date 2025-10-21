@@ -3,6 +3,7 @@ import type { HistoryEntry } from "./types";
 
 export async function fetchHistory(): Promise<HistoryEntry[]> {
   try {
+
     const res = await fetch(`${API_BASE_URL}/history`);
     if (!res.ok) return [];
     const json = (await res.json()) as HistoryEntry[];
@@ -15,6 +16,7 @@ export async function fetchHistory(): Promise<HistoryEntry[]> {
 
 export async function postHistory(entry: HistoryEntry): Promise<void> {
   try {
+
     await fetch(`${API_BASE_URL}/history`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

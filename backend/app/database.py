@@ -5,6 +5,6 @@ import os
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:pass@localhost:5432/calc")
 
+engine = create_engine(DATABASE_URL, future=True)
 
-engine = create_engine(DATABASE_URL, future=False)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
