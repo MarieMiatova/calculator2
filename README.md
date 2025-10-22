@@ -84,7 +84,7 @@ git clone https://github.com/MarieMiatova/calculator2.git
 cd calculator2
 ```
 
-2. Backend
+### 2. Backend
 Запуск через Docker Compose
 ```bash
 cd backend
@@ -102,7 +102,7 @@ uvicorn app.main:app --reload
 ```
 
 
-3. Frontend
+### 3. Frontend
 Установка зависимостей и запуск
 ```bash
 cd frontend
@@ -110,7 +110,7 @@ npm install
 npm run dev
 ```
 
-4. Тестирование
+### 4. Тестирование
 Unit-тесты (backend)
 ```bash
 pytest tests/test_backend.py -v
@@ -141,4 +141,6 @@ npx playwright test
 ## Авторы
 
 Разработчики: [Стекольникова Манефа и Аларслан Бюлент]
+
+
 🌐 GitHub: https://github.com/MarieMiatova и https://github.com/Bulentor 
