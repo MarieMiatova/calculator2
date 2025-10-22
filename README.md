@@ -15,10 +15,36 @@ Frontend размещён на **Netlify**, а backend и база данных 
 ---
 
 ## 🏗️ Архитектура проекта
+```bash
+project/
+├── backend/
+│ ├── app/
+│ │ ├── main.py # Точка входа FastAPI
+│ │ ├── models.py # SQLAlchemy-модели (History)
+│ │ ├── schemas.py # Pydantic-схемы
+│ │ ├── database.py # Подключение к БД
+│ ├── requirements.txt
+│ ├── Dockerfile
+│ ├── docker-compose.yml
+│
+├── frontend/
+│ ├── src/
+│ │ ├── main.ts # Основная логика интерфейса
+│ │ ├── calculator.ts # Парсер и вычислитель выражений
+│ │ ├── api.ts # API-запросы к backend
+│ │ ├── config.ts # Конфигурация API URL
+│ │ └── types.ts
+│ ├── vite.config.ts
+│ ├── package.json
+│ └── .env
+│
+├── tests/
+│ ├── test_backend.py # Тесты FastAPI
+│ ├── example.spec.js # E2E-тесты Playwright
+│
+└── README.md
+```
 
-
-
-<img width="484" height="440" alt="image" src="https://github.com/user-attachments/assets/4329f74e-f58d-4419-aa65-facb4fb8bd9c" />
 
 
 ## ⚙️ Технологии
