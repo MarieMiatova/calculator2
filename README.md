@@ -18,31 +18,57 @@ Frontend размещён на **Netlify**, а backend и база данных 
 
 
 project/
+
 ├── backend/
+
 │   ├── app/
-│   │   ├── main.py          
-│   │   ├── models.py        
-│   │   ├── schemas.py       
-│   │   ├── database.py      
+
+│   │   ├── main.py      
+
+│   │   ├── models.py    
+
+│   │   ├── schemas.py      
+
+│   │   ├── database.py    
+
 │   ├── requirements.txt
+
 │   ├── Dockerfile
+
 │   ├── docker-compose.yml
+
 │
+
 ├── frontend/
+
 │   ├── src/
-│   │   ├── main.ts          
-│   │   ├── calculator.ts    
-│   │   ├── api.ts           
-│   │   ├── config.ts        
+
+│   │   ├── main.ts   
+
+│   │   ├── calculator.ts 
+
+│   │   ├── api.ts  
+
+│   │   ├── config.ts   
+
 │   │   └── types.ts
+
 │   ├── vite.config.ts
+
 │   ├── package.json
+
 │   └── .env
+
 │
+
 ├── tests/
-│   ├── test_backend.py      
-│   ├── example.spec.js      
+
+│   ├── test_backend.py  
+
+│   ├── example.spec.js   
+
 │
+
 └── README.md
 <img width="484" height="440" alt="image" src="https://github.com/user-attachments/assets/4329f74e-f58d-4419-aa65-facb4fb8bd9c" />
 
