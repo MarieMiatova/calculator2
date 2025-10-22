@@ -72,7 +72,7 @@ project/
 
 ### 1. Клонирование репозитория
 ```bash
-[[git clone https://github.com/MarieMiatova/calculator2.git
+git clone https://github.com/MarieMiatova/calculator2.git
 cd calculator2
 ```
 
